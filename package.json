@@ -2,7 +2,7 @@
   "name": "@gor55/project1brain-games",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js"
   },
@@ -28,5 +28,9 @@
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5"
+  },
+  "dependencies": {
+    "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
+    "readline-sync": "^1.4.10"
   }
 }
