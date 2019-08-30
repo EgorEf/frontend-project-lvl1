@@ -7,4 +7,7 @@ install:
 publishdeb:
 	npm publish --dry-run
 
+lint:
+	npx eslint .
+
 

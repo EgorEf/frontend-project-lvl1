@@ -6,6 +6,9 @@
   "bin": {
     "brain-games": "dist/bin/brain-games.js"
   },
+  "engines": {
+    "node": ">=8"
+  },
   "files": [
     "dist"
   ],
@@ -27,7 +30,16 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
-    "@babel/preset-env": "^7.5.5"
+    "@babel/preset-env": "^7.5.5",
+    "babel-eslint": "10.0.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "13.2.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-lodash-fp": "^2.2.0-a1",
+    "@babel/preset-flow": "^7.0.0",
+    "eslint-plugin-flowtype": "^3.13.0",
+    "debug": "^4.1.1"
   },
   "dependencies": {
     "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
