@@ -1,19 +1,29 @@
 import readlineSync from 'readline-sync';
 
-export const getName = readlineSync.question('Welcome to the Brain Games!\nMay I have your name? ');
-export const helloName = () => console.log(`Hello, ${getName}`);
-export const gameConditEv = () => console.log('Answer "yes" if the number is even, otherwise answer "no".');
-export const generateNum = () => Math.floor(Math.random() * 101);
-export const funcAnswer = () => readlineSync.question('Your answer: ');
-export const question = number => console.log(`Question: ${number}`);
-export const logic = (counter) => {
-  const number = generateNum();
-  question(number);
-  const answer = funcAnswer();
-  if (counter === 1) return console.log(`Congratulations, ${getName}`);
-  const correctAnswer = (number % 2 === 0) ? 'yes' : 'no';
-  if (correctAnswer === answer) {
-    console.log('Correct!');
-    return logic(counter - 1);
-  } return console.log(`"${answer}" is wrong answer ;(. Correct answer was ${correctAnswer}.\nLet's try again, ${getName}!`);
+export default (getCondition, getCorrectAnswer, getDataForQuestion, toNextStep) => {
+  const makeQuestion = ForQuestion => console.log(`Question: ${ForQuestion}`);
+  const getAnswer = () => readlineSync.question('Your answer: ');
+  const greeting = () => console.log('Welcome to the Brain Games!');
+  const getName = () => readlineSync.question('May I have your name? ');
+  const helloName = name => console.log(`Hello, ${name}`);
+  const logic = (CorrectAnswer, DataForQuestion, name, nextStep) => {
+    for (let counter = 3; counter > 0; counter -= 1) {
+      const step = nextStep();
+      makeQuestion(DataForQuestion(step));
+      const correctAnswer = CorrectAnswer(step);
+      const answer = getAnswer();
+      if (correctAnswer === answer) {
+        console.log('Correct!');
+      } else return console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);
+    }
+    return console.log(`Congratulations, ${name}`);
+  };
+  const gameStart = () => {
+    greeting();
+    console.log(getCondition);
+    const name = getName();
+    helloName(name);
+    logic(getCorrectAnswer, getDataForQuestion, name, toNextStep);
+  };
+  gameStart();
 };

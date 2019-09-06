@@ -1,11 +1,12 @@
 {
   "name": "@gor55/project1brain-games",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/index.js",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js"
   },
   "engines": {
     "node": ">=8"
@@ -44,6 +45,8 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-pipeline-operator": "^7.5.0",
-    "readline-sync": "^1.4.10"
+    "@hexlet/pairs": "^1.0.10",
+    "readline-sync": "^1.4.10",
+    "source-map-support": "^0.5.13"
   }
 }

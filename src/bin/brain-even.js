@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-import {
-  gameConditEv, getName, helloName, logic,
-} from '../index';
+import brainEven from '../games/even';
 
-helloName(getName);
-gameConditEv();
-logic(3);
+brainEven();
