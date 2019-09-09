@@ -1,8 +1,11 @@
-run:
+even:
 	npx babel-node 'src/bin/brain-even.js' 8
 
-start:
+calc:
 	npx babel-node 'src/bin/brain-calc.js' 8
+
+gcd:
+	npx babel-node 'src/bin/brain-gcd.js' 8
 
 install:
 	npm install
