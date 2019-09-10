@@ -10,6 +10,9 @@ gcd:
 progress:
 	npx babel-node 'src/bin/brain-progression.js' 8
 
+prime:
+	npx babel-node 'src/bin/brain-prime.js' 8
+
 install:
 	npm install
 
