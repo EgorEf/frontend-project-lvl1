@@ -7,6 +7,9 @@ calc:
 gcd:
 	npx babel-node 'src/bin/brain-gcd.js' 8
 
+progress:
+	npx babel-node 'src/bin/brain-progression.js' 8
+
 install:
 	npm install
 
