@@ -5,25 +5,20 @@ import core from '..';
 
 export default () => {
   const conditionForProg = 'What number is missing in the progression?';
-  const generateStep = () => {
-    const selectOfLengtStep = 6;
-    const generateNum = Math.floor(Math.random() * selectOfLengtStep);
-    if (generateNum === 0) return generateStep();
-    return generateNum;
+  const generateNumNotZero = (num) => {
+    const generateNum = Math.floor(Math.random() * num);
+    if (generateNum !== 0) return generateNum;
+    return generateNumNotZero(num);
   };
   const generateBeginNum = () => {
     const selectionsOfNum = 51;
     return Math.floor(Math.random() * selectionsOfNum);
   };
-  const generateSecretQuest = () => {
-    const selectOfLengtStep = 10;
-    const generateNum = Math.floor(Math.random() * selectOfLengtStep);
-    if (generateNum === 0) return generateSecretQuest();
-    return generateNum;
-  };
   const nextRound = () => {
-    const positionSecretQuestion = generateSecretQuest();
-    const lengthStep = generateStep();
+    const selectionPositionSecret = 10;
+    const selectionLengthStep = 6;
+    const positionSecretQuestion = generateNumNotZero(selectionPositionSecret);
+    const lengthStep = generateNumNotZero(selectionLengthStep);
     const beginNum = generateBeginNum();
     const progressionLength = 10;
     const expressionToStr = () => {
