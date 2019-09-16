@@ -1,5 +1,5 @@
 # frontend-project-lvl1
-[![Test Coverage](https://api.codeclimate.com/v1/badges/5280618e4585303f5f1d/test_coverage)](https://codeclimate.com/github/EgorEf/frontend-project-lvl1/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/5280618e4585303f5f1d/maintainability)](https://codeclimate.com/github/EgorEf/frontend-project-lvl1/maintainability)
 [![Build Status](https://travis-ci.org/EgorEf/frontend-project-lvl1.svg?branch=master)](https://travis-ci.org/EgorEf/frontend-project-lvl1)
 
 Global install package and running Brain-even game.

@@ -1,46 +1,43 @@
-import {
-  cons, car, cdr,
-} from '@hexlet/pairs';
+import { cons } from '@hexlet/pairs';
 import core from '..';
+import generateNum from '../utility';
 
 export default () => {
-  const conditionForProg = 'What number is missing in the progression?';
-  const generateNumNotZero = (num) => {
-    const generateNum = Math.floor(Math.random() * num);
-    if (generateNum !== 0) return generateNum;
-    return generateNumNotZero(num);
-  };
+  const condition = 'What number is missing in the progression?';
   const generateBeginNum = () => {
-    const selectionsOfNum = 51;
-    return Math.floor(Math.random() * selectionsOfNum);
+    const minNum = 0;
+    const maxNum = 50;
+    return generateNum(minNum, maxNum);
   };
-  const nextRound = () => {
-    const selectionPositionSecret = 10;
-    const selectionLengthStep = 6;
-    const positionSecretQuestion = generateNumNotZero(selectionPositionSecret);
-    const lengthStep = generateNumNotZero(selectionLengthStep);
+  const generatelengthStep = () => {
+    const min = 1;
+    const max = 7;
+    return generateNum(min, max);
+  };
+  const generatePositionSecret = () => {
+    const min = 0;
+    const max = 11;
+    return generateNum(min, max);
+  };
+  const generateData = () => {
     const beginNum = generateBeginNum();
+    const lengthStep = generatelengthStep();
+    const positionSecret = generatePositionSecret();
     const progressionLength = 10;
-    const expressionToStr = () => {
+    const getQuestion = () => {
       let progression = beginNum;
       let result = '';
       const secret = '..';
-      for (let counter = 1; counter <= progressionLength; counter += 1) {
-        const step = (positionSecretQuestion === counter) ? secret : progression;
+      for (let counter = 0; counter <= progressionLength; counter += 1) {
+        const step = (positionSecret === counter) ? secret : progression;
         progression += lengthStep;
         result += `${step} `;
       }
       return String(`${result}`);
     };
-    const getCorrectAnswer = () => {
-      const valueSecretNum = beginNum + lengthStep * (positionSecretQuestion - 1);
-      return String(valueSecretNum);
-    };
-    const forQuestion = expressionToStr();
-    const correctAnswer = getCorrectAnswer();
-    return cons(forQuestion, correctAnswer);
+    const question = getQuestion();
+    const answer = String(beginNum + lengthStep * (positionSecret));
+    return cons(question, answer);
   };
-  const question = pair => car(pair);
-  const correctAnswer = pair => cdr(pair);
-  return core(conditionForProg, correctAnswer, question, nextRound);
+  return core(condition, generateData);
 };

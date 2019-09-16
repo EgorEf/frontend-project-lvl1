@@ -1,18 +1,15 @@
-import {
-  cons, car, cdr,
-} from '@hexlet/pairs';
+import { cons } from '@hexlet/pairs';
 import core from '..';
+import generateNum from '../utility';
 
 export default () => {
-  const conditionForPrime = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-  const generateNum = () => {
-    const selectionsOfNum = 51;
-    return Math.floor(Math.random() * selectionsOfNum);
-  };
-  const nextRound = () => {
-    const number = generateNum();
-    const expressionToStr = () => String(`${number}`);
-    const getCorrectAnswer = () => {
+  const condition = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+  const generateData = () => {
+    const min = 0;
+    const max = 101;
+    const number = generateNum(min, max);
+    const question = String(`${number}`);
+    const getAnswer = () => {
       const correctAns = 'yes';
       const inCorrectAns = 'no';
       for (let divider = 2; divider < number; divider += 1) {
@@ -22,11 +19,8 @@ export default () => {
       }
       return correctAns;
     };
-    const correctAnswer = getCorrectAnswer();
-    const forQuestion = expressionToStr();
-    return cons(forQuestion, correctAnswer);
+    const answer = getAnswer();
+    return cons(question, answer);
   };
-  const question = pair => car(pair);
-  const correctAnswer = pair => cdr(pair);
-  return core(conditionForPrime, correctAnswer, question, nextRound);
+  return core(condition, generateData);
 };

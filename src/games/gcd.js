@@ -1,21 +1,18 @@
-import {
-  cons, car, cdr,
-} from '@hexlet/pairs';
+import { cons } from '@hexlet/pairs';
 import core from '..';
+import generateNum from '../utility';
 
 export default () => {
-  const conditionForGcd = 'Find the greatest common divisor of given numbers.';
-  const generateNum = () => {
-    const selectionsOfNum = 51;
-    return Math.floor(Math.random() * selectionsOfNum);
-  };
-  const nextRound = () => {
-    const num1 = generateNum();
-    const num2 = generateNum();
+  const condition = 'Find the greatest common divisor of given numbers.';
+  const generateData = () => {
+    const min = 0;
+    const max = 101;
+    const num1 = generateNum(min, max);
+    const num2 = generateNum(min, max);
     const biggestNum = (num1 >= num2) ? num1 : num2;
     const smallestNum = (num1 >= num2) ? num2 : num1;
-    const expressionToStr = () => String(`${num1} ${num2}`);
-    const getCorrectAnswer = () => {
+    const question = String(`${num1} ${num2}`);
+    const getGCD = () => {
       let gcd = smallestNum;
       for (let counter = gcd; counter > 0; counter -= 1) {
         if (biggestNum % counter === 0 && smallestNum % counter === 0) {
@@ -25,11 +22,8 @@ export default () => {
       }
       return String(gcd);
     };
-    const correctAnswer = getCorrectAnswer();
-    const forQuestion = expressionToStr();
-    return cons(forQuestion, correctAnswer);
+    const answer = getGCD();
+    return cons(question, answer);
   };
-  const question = pair => car(pair);
-  const correctAnswer = pair => cdr(pair);
-  return core(conditionForGcd, correctAnswer, question, nextRound);
+  return core(condition, generateData);
 };

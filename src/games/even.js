@@ -1,20 +1,19 @@
-import {
-  cons, car, cdr,
-} from '@hexlet/pairs';
+import { cons } from '@hexlet/pairs';
 import core from '..';
+import generateNum from '../utility';
 
 export default () => {
-  const conditionForEv = 'Answer "yes" if the number is even, otherwise answer "no".';
-  const generateNum = () => {
-    const selectionsOfNum = 51;
-    return Math.floor(Math.random() * selectionsOfNum);
+  const condition = 'Answer "yes" if the number is even, otherwise answer "no".';
+  const generateData = () => {
+    const min = 0;
+    const max = 50;
+    const question = generateNum(min, max);
+    const getAnswer = () => {
+      const correctAnswer = (question % 2 === 0) ? 'yes' : 'no';
+      return correctAnswer;
+    };
+    const answer = getAnswer();
+    return cons(question, answer);
   };
-  const nextRound = () => {
-    const dataForQuestion = generateNum();
-    const correctAnswerEv = (dataForQuestion % 2 === 0) ? 'yes' : 'no';
-    return cons(dataForQuestion, correctAnswerEv);
-  };
-  const getQuestion = pair => car(pair);
-  const getCorrect = pair => cdr(pair);
-  return core(conditionForEv, getCorrect, getQuestion, nextRound);
+  return core(condition, generateData);
 };
