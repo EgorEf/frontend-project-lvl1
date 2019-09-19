@@ -2,35 +2,32 @@ import { cons } from '@hexlet/pairs';
 import core from '..';
 import generateNum from '../utility';
 
+const condition = 'What is the result of the expression?';
+const listSymbol = '*+-';
+const minValue = 0;
+const maxValue = 3;
+const generateSymbol = (minNum, maxNum, symbols) => symbols[generateNum(minNum, maxNum)];
+const min = 0;
+const max = 50;
+const getCorrectAnswer = (number1, number2, symbols) => {
+  switch (symbols) {
+    case '+':
+      return String(number1 + number2);
+    case '-':
+      return String(number1 - number2);
+    case '*':
+      return String(number1 * number2);
+    default:
+      return null;
+  }
+};
 export default () => {
-  const condition = 'What is the result of the expression?';
-  const generateSymbol = () => {
-    const str = '*+-';
-    const minVal = 0;
-    const maxVal = 3;
-    const getSymb = str[generateNum(minVal, maxVal)];
-    return getSymb;
-  };
   const generateData = () => {
-    const min = 0;
-    const max = 50;
-    const symbol = generateSymbol();
+    const symbol = generateSymbol(minValue, maxValue, listSymbol);
     const num1 = generateNum(min, max);
     const num2 = generateNum(min, max);
     const question = String(`${num1} ${symbol} ${num2}`);
-    const getCorrectAnswer = () => {
-      switch (symbol) {
-        case '+':
-          return String(num1 + num2);
-        case '-':
-          return String(num1 - num2);
-        case '*':
-          return String(num1 * num2);
-        default:
-          return null;
-      }
-    };
-    const answer = getCorrectAnswer();
+    const answer = getCorrectAnswer(num1, num2, symbol);
     return cons(question, answer);
   };
   return core(condition, generateData);

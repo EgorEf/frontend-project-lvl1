@@ -4,7 +4,7 @@ import {
 } from '@hexlet/pairs';
 
 export default (condition, generateData) => {
-  const logic = (nextRound, name) => {
+  const runLogic = (nextRound, name) => {
     const numberOfRounds = 3;
     for (let counter = numberOfRounds; counter > 0; counter -= 1) {
       const step = nextRound();
@@ -16,13 +16,18 @@ export default (condition, generateData) => {
       const answer = readlineSync.question('Your answer: ');
       if (correctAnswer === answer) {
         console.log('Correct!');
-      } else return console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`);
+      } else {
+        console.log(`"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".`);
+        console.log(`Let's try again, ${name}!`);
+        return null;
+      }
     }
-    return console.log(`Congratulations, ${name}`);
+    console.log(`Congratulations, ${name}`);
+    return null;
   };
   console.log('Welcome to the Brain Games!');
   console.log(condition);
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}`);
-  logic(generateData, name);
+  runLogic(generateData, name);
 };
