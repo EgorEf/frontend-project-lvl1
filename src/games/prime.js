@@ -5,22 +5,16 @@ import generateNum from '../utility';
 const condition = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 const min = 0;
 const max = 101;
-const getAnswer = (num) => {
-  const correctAns = 'yes';
-  const inCorrectAns = 'no';
+const isPrime = (num) => {
   for (let divider = 2; divider < num; divider += 1) {
-    if (num % divider === 0) {
-      return inCorrectAns;
-    }
+    return (num % divider !== 0);
   }
-  return correctAns;
+  return true;
 };
-export default () => {
-  const generateData = () => {
-    const number = generateNum(min, max);
-    const question = String(`${number}`);
-    const answer = getAnswer(number);
-    return cons(question, answer);
-  };
-  return core(condition, generateData);
+const generateData = () => {
+  const num = generateNum(min, max);
+  const question = 'num';
+  const answer = isPrime(num) ? 'yes' : 'no';
+  return cons(question, answer);
 };
+export default () => core(condition, generateData);

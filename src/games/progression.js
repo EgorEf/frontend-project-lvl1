@@ -3,32 +3,22 @@ import core from '..';
 import generateNum from '../utility';
 
 const condition = 'What number is missing in the progression?';
-const minNum = 0;
-const maxNum = 50;
-const minLengthStep = 1;
-const maxLengthStep = 7;
-const minPositionSecret = 0;
-const maxPositionSecret = 11;
-const getQuestion = (beginNumber, lengthStep, positionSecret) => {
-  const progressionLength = 10;
-  let progression = beginNumber;
+const progressionLength = 10;
+const getQuestion = (start, diff, secret) => {
   let result = '';
-  const secret = '..';
-  for (let counter = 0; counter <= progressionLength; counter += 1) {
-    const step = (positionSecret === counter) ? secret : progression;
-    progression += lengthStep;
-    result = `${result}${step} `;
+  const secretPlace = '..';
+  for (let counter = 0; counter < progressionLength; counter += 1) {
+    const step = (secret === counter) ? secretPlace : start + diff * (counter);
+    result = `${result} ${step}`;
   }
-  return String(`${result}`);
+  return result;
 };
-export default () => {
-  const generateData = () => {
-    const beginNum = generateNum(minNum, maxNum);
-    const lengthStep = generateNum(minLengthStep, maxLengthStep);
-    const positionSecret = generateNum(minPositionSecret, maxPositionSecret);
-    const question = getQuestion(beginNum, lengthStep, positionSecret);
-    const answer = String(beginNum + lengthStep * (positionSecret));
-    return cons(question, answer);
-  };
-  return core(condition, generateData);
+const generateData = () => {
+  const startNum = generateNum(0, 50);
+  const diff = generateNum(1, 7);
+  const positionSecret = generateNum(0, progressionLength);
+  const question = getQuestion(startNum, diff, positionSecret);
+  const answer = String(startNum + diff * (positionSecret));
+  return cons(question, answer);
 };
+export default () => core(condition, generateData);
