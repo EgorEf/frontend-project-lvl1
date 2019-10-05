@@ -4,8 +4,7 @@ import generateNum from '../utility';
 
 const condition = 'What is the result of the expression?';
 const mathOperators = '*+-';
-const lengthList = mathOperators.length;
-const getOperator = operators => operators[generateNum(0, lengthList)];
+const getOperator = operators => operators[generateNum(0, mathOperators.length)];
 const min = 0;
 const max = 50;
 const getCorrectAnswer = (number1, number2, operator) => {

@@ -4,11 +4,11 @@ import generateNum from '../utility';
 
 const condition = 'Find the greatest common divisor of given numbers.';
 const getGcd = (num1, num2) => {
-  const bigNum = (num1 >= num2) ? num1 : num2;
-  const smallNum = (num1 >= num2) ? num2 : num1;
-  let gcd = smallNum;
+  const max = (num1 >= num2) ? num1 : num2;
+  const min = (num1 >= num2) ? num2 : num1;
+  let gcd = min;
   for (let counter = gcd; counter > 0; counter -= 1) {
-    if (bigNum % counter === 0 && smallNum % counter === 0) {
+    if (max % counter === 0 && min % counter === 0) {
       gcd = counter;
       break;
     }

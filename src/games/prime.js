@@ -6,15 +6,17 @@ const condition = 'Answer "yes" if given number is prime. Otherwise answer "no".
 const min = 0;
 const max = 101;
 const isPrime = (num) => {
+  if (num < 2) return false;
   for (let divider = 2; divider < num; divider += 1) {
-    return (num % divider !== 0);
+    if (num % divider === 0) {
+      return false;
+    }
   }
   return true;
 };
 const generateData = () => {
-  const num = generateNum(min, max);
-  const question = 'num';
-  const answer = isPrime(num) ? 'yes' : 'no';
+  const question = generateNum(min, max);
+  const answer = isPrime(question) ? 'yes' : 'no';
   return cons(question, answer);
 };
 export default () => core(condition, generateData);
