@@ -4,8 +4,8 @@ import generateNum from '../utility';
 
 const condition = 'Find the greatest common divisor of given numbers.';
 const getGcd = (num1, num2) => {
-  const max = (num1 >= num2) ? num1 : num2;
-  const min = (num1 >= num2) ? num2 : num1;
+  const max = Math.max(num1, num2);
+  const min = Math.min(num1, num2);
   let gcd = min;
   for (let counter = gcd; counter > 0; counter -= 1) {
     if (max % counter === 0 && min % counter === 0) {
