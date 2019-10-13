@@ -4,27 +4,26 @@ import generateNum from '../utility';
 
 const condition = 'What is the result of the expression?';
 const mathOperators = '*+-';
-const getOperator = operators => operators[generateNum(0, mathOperators.length)];
 const min = 0;
 const max = 50;
-const getCorrectAnswer = (number1, number2, operator) => {
+const calculate = (number1, number2, operator) => {
   switch (operator) {
     case '+':
-      return String(number1 + number2);
+      return number1 + number2;
     case '-':
-      return String(number1 - number2);
+      return number1 - number2;
     case '*':
-      return String(number1 * number2);
+      return number1 * number2;
     default:
       return null;
   }
 };
 const generateData = () => {
-  const operator = getOperator(mathOperators);
+  const operator = mathOperators[generateNum(0, mathOperators.length - 1)];
   const num1 = generateNum(min, max);
   const num2 = generateNum(min, max);
   const question = `${num1} ${operator} ${num2}`;
-  const answer = getCorrectAnswer(num1, num2, operator);
+  const answer = String(calculate(num1, num2, operator));
   return cons(question, answer);
 };
 export default () => core(condition, generateData);
