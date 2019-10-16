@@ -6,14 +6,14 @@ const condition = 'What is the result of the expression?';
 const mathOperators = '*+-';
 const min = 0;
 const max = 50;
-const calculate = (number1, number2, operator) => {
+const calculate = (n1, n2, operator) => {
   switch (operator) {
     case '+':
-      return number1 + number2;
+      return n1 + n2;
     case '-':
-      return number1 - number2;
+      return n1 - n2;
     case '*':
-      return number1 * number2;
+      return n1 * n2;
     default:
       return null;
   }
